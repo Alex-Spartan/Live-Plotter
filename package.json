@@ -1,0 +1,61 @@
+{
+  "name": "live-variable-plotter",
+  "displayName": "Live Variable Plotter",
+  "description": "Plot values sent directly from C++ code in real time.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Visualization"
+  ],
+  "activationEvents": [
+    "onCommand:liveVariablePlotter.open",
+    "onCommand:liveVariablePlotter.runDemo",
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "liveVariablePlotter.open",
+        "title": "Live Variable Plotter: Open Graph"
+      },
+      {
+        "command": "liveVariablePlotter.runDemo",
+        "title": "Live Variable Plotter: Run C++ Demo"
+      }
+    ],
+    "configuration": {
+      "title": "Live Variable Plotter",
+      "properties": {
+        "liveVariablePlotter.port": {
+          "type": "number",
+          "default": 43173,
+          "minimum": 1024,
+          "maximum": 65535,
+          "description": "Loopback port that receives samples from LIVE_PLOT calls in C++."
+        },
+        "liveVariablePlotter.maxDataPoints": {
+          "type": "number",
+          "default": 120,
+          "minimum": 10,
+          "maximum": 2000,
+          "description": "Maximum number of samples displayed for each variable."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.7.0"
+  }
+}

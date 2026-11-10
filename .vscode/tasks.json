@@ -1,0 +1,57 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "C/C++: g++.exe build active file",
+      "type": "shell",
+      "command": "C:\\MinGW\\bin\\g++.exe",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe",
+        "-lws2_32"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "npm",
+      "script": "compile",
+      "problemMatcher": "$tsc",
+      "label": "npm: compile"
+    },
+    {
+      "label": "Build Live Variable Demo",
+      "type": "shell",
+      "command": "g++.exe",
+      "args": [
+        "-std=c++11",
+        "-g",
+        "-O0",
+        "${workspaceFolder}/examples/live_variables.cpp",
+        "-lws2_32",
+        "-o",
+        "${workspaceFolder}/examples/live_variables.exe"
+      ],
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Run Live Variable Demo",
+      "type": "shell",
+      "command": "${workspaceFolder}\\examples\\live_variables.exe",
+      "dependsOn": "Build Live Variable Demo",
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    }
+  ]
+}
